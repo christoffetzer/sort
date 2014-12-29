@@ -1,0 +1,20 @@
+[package]
+
+name = "sort"
+version = "0.0.1"
+authors = ["Christof Fetzer <christof.fetzergmail.com>"]
+description = "This package defines a simple sort function  to demonstrate random testing with the help of post-conditions. The intention is to use the code in class and for task assignments. Not intended for any other use."
+
+documentation = "https://github.com/christoffetzer/sort"
+homepage = "https://github.com/christoffetzer/sort"
+repository = "https://github.com/christoffetzer/sort"
+readme = "README.md"
+keywords = ["testing", "post-condition"]
+license = "Unlicensed"
+
+[lib]
+name = "sort"
+
+[dependencies.rndtester]
+git = "https://github.com/christoffetzer/rndtester"
+
