@@ -1,4 +1,11 @@
 #![experimental]
+
+#![feature(phase)]
+#[phase(plugin)]
+extern crate quickcheck_macros;
+extern crate quickcheck;
+
+
 // (C) Christof Fetzer, 2014
 
 
@@ -6,11 +13,8 @@
 Check if array is sorted using splicing.
 
 Problem: This implementation uses slicing. However, slicing inside
-the match does not work for generic types.
-
-We hope that eventually Rust might be extended for matches to work with
-generic types. Until then, do not use is_sorted_int but instead use
-function is_sorted (which is programmed without using match).  
+the match does not seem to work for generic types due to limitation
+of Rust. Hence, we use a more 'operational' function is_sorted instead.
 
 Example usage:
 
@@ -195,6 +199,16 @@ pub fn sort<T: std::cmp::PartialOrd+Clone>(a: &[T], mut v : Vec<T>) -> Vec<T>  {
 		v.insert(m, a[i].clone());
 	}
 	v
+}
+
+#[quickcheck]
+fn check_sort(xs: Vec<int>) -> bool {
+	let mut vo: Vec<int> = Vec::with_capacity(xs.len());
+
+    vo = sort(xs.as_slice(), vo);
+	is_sorted(vo.as_slice()) 
+	 && is_permutation(xs.as_slice(),vo.as_slice())
+	
 }
 
 

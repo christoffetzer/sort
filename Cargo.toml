@@ -18,3 +18,5 @@ name = "sort"
 [dependencies.rndtester]
 git = "https://github.com/christoffetzer/rndtester"
 
+[dependencies.quickcheck_macros]
+git = "https://github.com/BurntSushi/quickcheck"
